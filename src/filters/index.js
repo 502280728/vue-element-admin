@@ -1,6 +1,6 @@
 // import parseTime, formatTime and set to filter
+import { parseTime } from '@/utils'
 export { parseTime, formatTime } from '@/utils'
-
 /**
  * Show plural label if time is plural number
  * @param {number} time
@@ -65,4 +65,8 @@ export function toThousandFilter(num) {
  */
 export function uppercaseFirst(string) {
   return string.charAt(0).toUpperCase() + string.slice(1)
+}
+
+export function timestamptostring(ts) {
+  return parseTime(ts + '')
 }

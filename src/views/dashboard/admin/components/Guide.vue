@@ -5,11 +5,11 @@
         {{ scope.row.order_no | orderNoFilter }}
       </template>
     </el-table-column>
-    <el-table-column label="Price" width="195" align="center">
+    <!-- <el-table-column label="Price" width="195" align="center">
       <template slot-scope="{row}">
-        {{ row.timestamp | timestamptostring }}
+         {{ row.timestamp | timestamptostring }}
       </template>
-    </el-table-column>
+    </el-table-column> -->
     <!-- <el-table-column label="Status" width="100" align="center">
       <template slot-scope="{row}">
         <el-tag :type="row.status | statusFilter">
@@ -47,7 +47,7 @@ export default {
   methods: {
     fetchData() {
       transactionList().then(response => {
-        this.list = response.data.items.slice(0, 3)
+        this.list = response.data.items.slice(0, 4)
       })
     }
   }
