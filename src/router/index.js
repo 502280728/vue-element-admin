@@ -84,51 +84,28 @@ export const constantRoutes = [
     ]
   },
   {
-    path: '/documentation',
+    path: '/qianzhangguanli',
     component: Layout,
+    redirect: 'noRedirect',
+    name: 'qianzhangguanli',
+    meta: {
+      title: 'qianzhangguanli',
+      icon: 'component'
+    },
     children: [
       {
-        path: 'index',
-        component: () => import('@/views/documentation/index'),
-        name: 'Documentation',
-        meta: { title: 'Documentation', icon: 'documentation', affix: true }
+        path: 'qianzhang',
+        component: () => import('@/views/components-demo/split-pane'),
+        name: 'qianzhang',
+        meta: { title: 'qianzhang' }
+      },{
+        path: 'yiqianliebiao',
+        component: () => import('@/views/table/complex-table'),
+        name: 'yiqianliebiao',
+        meta: { title: 'yiqianliebiao' }
       }
     ]
   },
-  {
-    path: '/guide',
-    component: Layout,
-    redirect: '/guide/index',
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/guide/index'),
-        name: 'Guide',
-        meta: { title: 'Guide', icon: 'guide', noCache: true }
-      }
-    ]
-  },
-  {
-    path: '/profile',
-    component: Layout,
-    redirect: '/profile/index',
-    hidden: true,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/profile/index'),
-        name: 'Profile',
-        meta: { title: 'Profile', icon: 'user', noCache: true }
-      }
-    ]
-  }
-]
-
-/**
- * asyncRoutes
- * the routes that need to be dynamically loaded based on user roles
- */
-export const asyncRoutes = [
   {
     path: '/permission',
     component: Layout,
@@ -170,6 +147,27 @@ export const asyncRoutes = [
       }
     ]
   },
+  {
+    path: '/profile',
+    component: Layout,
+    redirect: '/profile/index',
+    hidden: true,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/profile/index'),
+        name: 'Profile',
+        meta: { title: 'Profile', icon: 'user', noCache: true }
+      }
+    ]
+  }
+]
+
+/**
+ * asyncRoutes
+ * the routes that need to be dynamically loaded based on user roles
+ */
+export const asyncRoutes = [
 
   {
     path: '/icon',

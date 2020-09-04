@@ -94,7 +94,7 @@ export default {
       clickable: this.clickable,
       thumbnailWidth: this.thumbnailWidth,
       thumbnailHeight: this.thumbnailHeight,
-      maxFiles: this.maxFiles,
+      maxFiles: 1,
       maxFilesize: this.maxFilesize,
       dictRemoveFile: 'Remove',
       addRemoveLinks: this.showRemoveLink,
