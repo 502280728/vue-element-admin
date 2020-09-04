@@ -98,7 +98,7 @@ export const constantRoutes = [
         component: () => import('@/views/components-demo/split-pane'),
         name: 'qianzhang',
         meta: { title: 'qianzhang' }
-      },{
+      }, {
         path: 'yiqianliebiao',
         component: () => import('@/views/table/complex-table'),
         name: 'yiqianliebiao',

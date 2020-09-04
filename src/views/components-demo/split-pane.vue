@@ -11,7 +11,7 @@
           <template slot="paneL">
             <div class="top-container">
               <div :style="{height:'100%',overflow:'auto'}">
-                <span class='span-pan-thumb-wrapper' v-for="(image,index) in images" v-bind:key="'abc'+index">
+                <span v-for="(image,index) in images" :key="'abc'+index" class="span-pan-thumb-wrapper">
                   <pan-thumb :image="image" />
                 </span>
               </div>
@@ -21,7 +21,7 @@
             <div class="bottom-container">
 
               <div :style="{height:'100%',overflow:'auto'}">
-                <span class='span-pan-thumb-wrapper' v-for="(image,index) in images" v-bind:key="'abc'+index">
+                <span v-for="(image,index) in images" :key="'abc'+index" class="span-pan-thumb-wrapper">
                   <pan-thumb :image="image" />
                 </span>
               </div>
@@ -31,7 +31,7 @@
       </template>
       <template slot="paneR">
         <div>
-          <pdf src="abc.pdf"/>
+          <pdf src="abc.pdf" />
         </div>
       </template>
     </split-pane>
@@ -45,23 +45,23 @@ import PanThumb from '@/components/PanThumb'
 import pdf from 'vue-pdf'
 export default {
   name: 'SplitpaneDemo',
+  components: { splitPane, PanThumb, pdf },
   data() {
     return {
-      images: ["https://wpimg.wallstcn.com/577965b9-bb9e-4e02-9f0c-095b41417191",
-        "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3711535626,1297779669&fm=26&gp=0.jpg",
-        "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3711535626,1297779669&fm=26&gp=0.jpg",
-        "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3711535626,1297779669&fm=26&gp=0.jpg",
-        "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3711535626,1297779669&fm=26&gp=0.jpg",
-        "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3711535626,1297779669&fm=26&gp=0.jpg",
-        "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3711535626,1297779669&fm=26&gp=0.jpg",
-        "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3711535626,1297779669&fm=26&gp=0.jpg",
-        "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3711535626,1297779669&fm=26&gp=0.jpg",
-        "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3711535626,1297779669&fm=26&gp=0.jpg",
-        "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3711535626,1297779669&fm=26&gp=0.jpg"
+      images: ['https://wpimg.wallstcn.com/577965b9-bb9e-4e02-9f0c-095b41417191',
+        'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3711535626,1297779669&fm=26&gp=0.jpg',
+        'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3711535626,1297779669&fm=26&gp=0.jpg',
+        'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3711535626,1297779669&fm=26&gp=0.jpg',
+        'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3711535626,1297779669&fm=26&gp=0.jpg',
+        'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3711535626,1297779669&fm=26&gp=0.jpg',
+        'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3711535626,1297779669&fm=26&gp=0.jpg',
+        'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3711535626,1297779669&fm=26&gp=0.jpg',
+        'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3711535626,1297779669&fm=26&gp=0.jpg',
+        'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3711535626,1297779669&fm=26&gp=0.jpg',
+        'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3711535626,1297779669&fm=26&gp=0.jpg'
       ]
     }
   },
-  components: { splitPane, PanThumb,pdf },
   methods: {
     resize() {
       console.log('resize')
