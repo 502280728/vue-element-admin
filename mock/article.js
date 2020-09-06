@@ -10,8 +10,8 @@ for (let i = 0; i < count; i++) {
   List.push(Mock.mock({
     id: '@increment',
     timestamp: +Mock.Random.date('T'),
-    author: '@first',
-    reviewer: '@first',
+    author: '@float(1, 5, 2, 2)Mb',
+    reviewer: '@first .pdf',
     title: '@title(5, 10)',
     content_short: 'mock data',
     content: baseContent,
@@ -23,7 +23,12 @@ for (let i = 0; i < count; i++) {
     comment_disabled: true,
     pageviews: '@integer(300, 5000)',
     image_uri,
-    platforms: ['a-platform']
+    platforms: ['a-platform'],
+    a1:"@first",
+    a2:"@name",
+    a3:"@first",
+    a4:"@last",
+    a5:"@first"
   }))
 }
 
