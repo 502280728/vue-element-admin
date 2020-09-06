@@ -89,7 +89,7 @@ export const constantRoutes = [
     redirect: 'noRedirect',
     name: 'qianzhangguanli',
     meta: {
-      title: 'qianzhangguanli',
+      title: '签章管理',
       icon: 'component'
     },
     children: [
@@ -97,12 +97,12 @@ export const constantRoutes = [
         path: 'qianzhang',
         component: () => import('@/views/components-demo/split-pane'),
         name: 'qianzhang',
-        meta: { title: 'qianzhang' }
+        meta: { title: '签章' }
       }, {
         path: 'yiqianliebiao',
         component: () => import('@/views/table/complex-table'),
         name: 'yiqianliebiao',
-        meta: { title: 'yiqianliebiao' }
+        meta: { title: '签章列表' }
       }
     ]
   },
@@ -113,37 +113,43 @@ export const constantRoutes = [
     alwaysShow: true, // will always show the root menu
     name: 'Permission',
     meta: {
-      title: 'Permission',
+      title: '系统管理',
       icon: 'lock',
       roles: ['admin', 'editor'] // you can set roles in root nav
     },
     children: [
-      {
-        path: 'page',
-        component: () => import('@/views/permission/page'),
-        name: 'PagePermission',
-        meta: {
-          title: 'Page Permission',
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
-      },
-      {
-        path: 'directive',
-        component: () => import('@/views/permission/directive'),
-        name: 'DirectivePermission',
-        meta: {
-          title: 'Directive Permission'
-          // if do not set roles, means: this page does not require permission
-        }
-      },
+      // {
+      //   path: 'page',
+      //   component: () => import('@/views/permission/page'),
+      //   name: 'PagePermission',
+      //   meta: {
+      //     title: 'Page Permission',
+      //     roles: ['admin'] // or you can only set roles in sub nav
+      //   }
+      // },
+      // {
+      //   path: 'directive',
+      //   component: () => import('@/views/permission/directive'),
+      //   name: 'DirectivePermission',
+      //   meta: {
+      //     title: 'Directive Permission'
+      //     // if do not set roles, means: this page does not require permission
+      //   }
+      // },
       {
         path: 'role',
         component: () => import('@/views/permission/role'),
         name: 'RolePermission',
         meta: {
-          title: 'Role Permission',
+          title: '角色管理',
           roles: ['admin']
         }
+      },
+      {
+        path: 'list',
+        component: () => import('@/views/example/list'),
+        name: 'ArticleList',
+        meta: { title: '用户列表', icon: 'list' }
       }
     ]
   },
@@ -210,12 +216,6 @@ export const asyncRoutes = [
         name: 'EditArticle',
         meta: { title: 'Edit Article', noCache: true, activeMenu: '/example/list' },
         hidden: true
-      },
-      {
-        path: 'list',
-        component: () => import('@/views/example/list'),
-        name: 'ArticleList',
-        meta: { title: 'Article List', icon: 'list' }
       }
     ]
   },

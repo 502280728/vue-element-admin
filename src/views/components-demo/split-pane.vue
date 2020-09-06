@@ -40,7 +40,6 @@
 
 <script>
 import splitPane from 'vue-splitpane'
-import ImageCropper from '@/components/ImageCropper'
 import PanThumb from '@/components/PanThumb'
 import pdf from 'vue-pdf'
 export default {
