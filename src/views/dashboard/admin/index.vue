@@ -7,7 +7,7 @@
     <all-buttons />
     <el-row>
       <el-col style="padding-right:8px;">
-        <p>签字数量</p>
+        <p>签证数量</p>
       </el-col>
       <el-col style="padding-right:8px;margin-bottom:30px;">
         <line-chart :chart-data="lineChartData" />

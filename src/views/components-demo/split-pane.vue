@@ -14,6 +14,9 @@
                 <span v-for="(image,index) in images" :key="'abc'+index" class="span-pan-thumb-wrapper">
                   <pan-thumb :image="image" />
                 </span>
+                <span class="span-pan-thumb-wrapper">
+                  <dropzone id="myVueDropzone" url="https://httpbin.org/post" @dropzone-removedFile="dropzoneR" @dropzone-success="dropzoneS" />
+                </span>
               </div>
             </div>
           </template>
@@ -41,20 +44,14 @@
 <script>
 import splitPane from 'vue-splitpane'
 import PanThumb from '@/components/PanThumb'
+import Dropzone from '@/components/Dropzone'
 import pdf from 'vue-pdf'
 export default {
   name: 'SplitpaneDemo',
-  components: { splitPane, PanThumb, pdf },
+  components: { splitPane, PanThumb, pdf,Dropzone },
   data() {
     return {
-      images: ['https://wpimg.wallstcn.com/577965b9-bb9e-4e02-9f0c-095b41417191',
-        'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3711535626,1297779669&fm=26&gp=0.jpg',
-        'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3711535626,1297779669&fm=26&gp=0.jpg',
-        'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3711535626,1297779669&fm=26&gp=0.jpg',
-        'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3711535626,1297779669&fm=26&gp=0.jpg',
-        'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3711535626,1297779669&fm=26&gp=0.jpg',
-        'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3711535626,1297779669&fm=26&gp=0.jpg',
-        'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3711535626,1297779669&fm=26&gp=0.jpg',
+      images: [
         'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3711535626,1297779669&fm=26&gp=0.jpg',
         'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3711535626,1297779669&fm=26&gp=0.jpg',
         'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3711535626,1297779669&fm=26&gp=0.jpg'
@@ -64,6 +61,14 @@ export default {
   methods: {
     resize() {
       console.log('resize')
+    },
+    dropzoneS(file) {
+      console.log(file)
+      this.$message({ message: 'Upload success', type: 'success' })
+    },
+    dropzoneR(file) {
+      console.log(file)
+      this.$message({ message: 'Delete success', type: 'success' })
     }
   }
 }
@@ -95,5 +100,8 @@ export default {
 .span-pan-thumb-wrapper {
   display: inline-block;
   padding: 10px;
+  width:200px;
+  height: 200px;
+  float: left;
 }
 </style>
