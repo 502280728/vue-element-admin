@@ -7,6 +7,13 @@ export function fetchList(query) {
     params: query
   })
 }
+export function fetchChargeList(query) {
+  return request({
+    url: '/vue-element-admin/article/listcharge',
+    method: 'get',
+    params: query
+  })
+}
 
 export function fetchArticle(id) {
   return request({

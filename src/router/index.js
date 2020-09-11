@@ -156,6 +156,12 @@ export const constantRoutes = [
         component: () => import('@/views/example/list1'),
         name: 'ArticleList1',
         meta: { title: '企业用户'}
+      },
+      {
+        path: 'charge',
+        component: () => import('@/views/example/charge'),
+        name: 'ChargeList',
+        meta: { title: '充值记录'}
       }
     ]
   },
