@@ -29,10 +29,10 @@ for (let i = 0; i < count; i++) {
     a3:"@first",
     a4:"@last",
     a5:"@first",
-    li:"@integer(100000000,300000000)",
-    money:"@integer(2000,3000)",
+    li:"20200910@integer(100000000,300000000)",
+    money:"@integer(2000,3000) ¥",
     "chargetype|1":["支付宝","微信"]
-  }))
+  }))  
 }
 
 module.exports = [

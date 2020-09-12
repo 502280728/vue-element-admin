@@ -50,7 +50,7 @@
           <span>{{ row.id }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="充值时间" align="center">
+      <el-table-column label="充值时间" >
         <template slot-scope="{row}">
           <span>{{ row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
         </template>
@@ -65,7 +65,7 @@
           <span>{{ row.money }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="充值方式" align="center">
+      <el-table-column label="充值方式" >
         <template slot-scope="{row}">
           <span>{{ row.chargetype }}</span>
         </template>

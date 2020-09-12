@@ -2,7 +2,9 @@
   <div class="dndList">
     <div :style="{width:width1}" class="dndList-list">
       <h3>{{ list1Title }}</h3>
-      <draggable :set-data="setData" :list="list1" group="article" class="dragArea">
+      <draggable :set-data="setData" :list="list1" 
+      :group="{ name: 'article', pull: 'clone', put: false }"
+      class="dragArea">
         <div v-for="element in list1" :key="element.id" class="list-complete-item">
           <div class="list-complete-item-handle">
             {{ element.id }}[{{ element.author }}] {{ element.title }}
