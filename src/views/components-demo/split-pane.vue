@@ -104,8 +104,8 @@ export default {
         "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3801084477,3495596200&fm=26&gp=0.jpg",
       ],
       images2:[
-"https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1599961596&di=dc9504f4113e95ef51783323a1c4b529&src=http://img13.360buyimg.com/popWaterMark/jfs/t757/128/205006117/112285/54c50f68/5493d8cdN5dd07cc4.jpg",
-"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2071618763,2733850504&fm=26&gp=0.jpg"
+"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1599976727625&di=21d5e2efa60b9a4b8d8d38e93968c463&imgtype=0&src=http%3A%2F%2Fgss0.baidu.com%2F94o3dSag_xI4khGko9WTAnF6hhy%2Fzhidao%2Fpic%2Fitem%2F6a600c338744ebf8627482f2d9f9d72a6159a7f2.jpg",
+"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1833238331,3319850972&fm=26&gp=0.jpg"
       ],
       choosed_image: "",
       zhengshutype: "",
