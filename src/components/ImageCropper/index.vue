@@ -225,11 +225,12 @@ export default {
     }
   },
   data() {
-    const { imgFormat, langType, langExt, width, height } = this
+    const { imgFormat, langExt, width, height } = this
     let isSupported = true
     const allowImgFormat = ['jpg', 'png']
     const tempImgFormat =
       allowImgFormat.indexOf(imgFormat) === -1 ? 'jpg' : imgFormat
+    const langType = 'zh'
     const lang = language[langType] ? language[langType] : language['en']
     const mime = mimes[tempImgFormat]
     // 规范图片格式

@@ -4,20 +4,29 @@
       <span class="filter-container-span">
         <el-input
           v-model="listQuery.title"
-          placeholder="姓名"
+          placeholder="请输入文件名"
           style="width: 200px;"
           class="filter-item"
           @keyup.enter.native="handleFilter"
         />
-        <el-select
+        <!-- <el-select v-model="listQuery.importance" placeholder="Imp" clearable style="width: 90px" class="filter-item">
+        <el-option v-for="item in importanceOptions" :key="item" :label="item" :value="item" />
+      </el-select>
+      <el-select v-model="listQuery.type" placeholder="Type" clearable class="filter-item" style="width: 130px">
+        <el-option v-for="item in calendarTypeOptions" :key="item.key" :label="item.display_name+'('+item.key+')'" :value="item.key" />
+      </el-select>
+      <el-select v-model="listQuery.sort" style="width: 140px" class="filter-item" @change="handleFilter">
+        <el-option v-for="item in sortOptions" :key="item.key" :label="item.label" :value="item.key" />
+        </el-select>-->
+      </span>
+      <span class="filter-container-span">
+        <el-date-picker
           v-model="listQuery.importance"
-          placeholder="部门"
-          clearable
-          style="width: 90px"
-          class="filter-item"
-        >
-          <el-option v-for="item in importanceOptions" :key="item" :label="item" :value="item" />
-        </el-select>
+          type="datetimerange"
+          range-separator="至"
+          start-placeholder="开始日期"
+          end-placeholder="结束日期"
+        ></el-date-picker>
       </span>
       <el-button
         v-waves
@@ -26,6 +35,22 @@
         icon="el-icon-search"
         @click="handleFilter"
       >搜索</el-button>
+      
+      <el-button
+        v-waves
+        :loading="downloadLoading"
+        class="filter-item"
+        type="primary"
+        icon="el-icon-download"
+        @click="handleDownload"
+      >导出</el-button>
+      <el-button
+        class="filter-item"
+        style="margin-left: 10px;"
+        type="success"
+        icon="el-icon-edit"
+        @click="imagecropperShow=true"
+      >快速验证</el-button>
     </div>
 
     <el-table
@@ -55,35 +80,31 @@
           <span>{{ row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="登录账号" >
+      <el-table-column label="文件名称">
         <template slot-scope="{row}">
-          <span class="link-type">{{ row.a1 }}</span>
+          <span>{{ row.reviewer }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="姓名"  align="center">
+      <el-table-column label="验证结果">
         <template slot-scope="{row}">
-          <span>{{ row.a2 }}</span>
+          <span  v-if="row.statusss=='成功'" :style="{color:'green'}">{{ row.statusss }}</span>
+          <span  v-if="row.statusss=='失败'" :style="{color:'red'}">{{ row.statusss }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="部门"  align="center">
+      <el-table-column label="文件大小">
         <template slot-scope="{row}">
-          <span>{{ row.a3 }}</span>
+          <span>{{ row.author }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="手机" align="center">
-        <template slot-scope="{row}">
-          <span>{{ row.a4 }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="邮箱">
-        <template slot-scope="{row}">
-          <span>{{ row.a5 }}</span>
-        </template>
-      </el-table-column>
+
       <el-table-column label="查看" align="center" width="230" class-name="small-padding fixed-width">
-        <template slot-scope="scope">
-          <el-button type="primary" size="small" @click="handleEdit(scope)">编辑</el-button>
-          <el-button type="danger" size="small" @click="handleDelete(scope)">删除</el-button>
+        <template slot-scope="{row,$index}">
+          <el-button
+            v-if="row.status!='deleted'"
+            size="mini"
+            type="primary"
+            @click="handleDelete(row,$index)"
+          >查看</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -96,72 +117,16 @@
       @pagination="getList"
     />
 
-    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
-      <el-form
-        ref="dataForm"
-        :rules="rules"
-        :model="temp"
-        label-position="left"
-        label-width="70px"
-        style="width: 400px; margin-left:50px;"
-      >
-        <el-form-item label="Type" prop="type">
-          <el-select v-model="temp.type" class="filter-item" placeholder="Please select">
-            <el-option
-              v-for="item in calendarTypeOptions"
-              :key="item.key"
-              :label="item.display_name"
-              :value="item.key"
-            />
-          </el-select>
-        </el-form-item>
-        <el-form-item label="Date" prop="timestamp">
-          <el-date-picker
-            v-model="temp.timestamp"
-            type="datetime"
-            placeholder="Please pick a date"
-          />
-        </el-form-item>
-        <el-form-item label="Title" prop="title">
-          <el-input v-model="temp.title" />
-        </el-form-item>
-        <el-form-item label="Status">
-          <el-select v-model="temp.status" class="filter-item" placeholder="Please select">
-            <el-option v-for="item in statusOptions" :key="item" :label="item" :value="item" />
-          </el-select>
-        </el-form-item>
-        <el-form-item label="Imp">
-          <el-rate
-            v-model="temp.importance"
-            :colors="['#99A9BF', '#F7BA2A', '#FF9900']"
-            :max="3"
-            style="margin-top:8px;"
-          />
-        </el-form-item>
-        <el-form-item label="Remark">
-          <el-input
-            v-model="temp.remark"
-            :autosize="{ minRows: 2, maxRows: 4}"
-            type="textarea"
-            placeholder="Please input"
-          />
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="dialogStatus==='create'?createData():updateData()">Confirm</el-button>
-      </div>
-    </el-dialog>
-
-    <el-dialog :visible.sync="dialogPvVisible" title="Reading statistics">
-      <el-table :data="pvData" border fit highlight-current-row style="width: 100%">
-        <el-table-column prop="key" label="Channel" />
-        <el-table-column prop="pv" label="Pv" />
-      </el-table>
-      <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="dialogPvVisible = false">Confirm</el-button>
-      </span>
-    </el-dialog>
+    <image-cropper
+      v-show="imagecropperShow"
+      :key="imagecropperKey"
+      :width="300"
+      :height="300"
+      url="https://httpbin.org/post"
+      lang-type="en"
+      @close="close"
+      @crop-upload-success="cropSuccess"
+    />
   </div>
 </template>
 
@@ -172,6 +137,7 @@ import {
   createArticle,
   updateArticle,
 } from "@/api/article";
+import ImageCropper from '@/components/ImageCropper'
 import waves from "@/directive/waves"; // waves directive
 import { parseTime } from "@/utils";
 import Pagination from "@/components/Pagination"; // secondary package based on el-pagination
@@ -191,7 +157,7 @@ const calendarTypeKeyValue = calendarTypeOptions.reduce((acc, cur) => {
 
 export default {
   name: "ComplexTable",
-  components: { Pagination },
+  components: { Pagination,ImageCropper },
   directives: { waves },
   filters: {
     statusFilter(status) {
@@ -208,6 +174,7 @@ export default {
   },
   data() {
     return {
+      imagecropperShow: false,
       tableKey: 0,
       list: null,
       total: 0,
@@ -220,7 +187,7 @@ export default {
         type: undefined,
         sort: "+id",
       },
-      importanceOptions: ["部门1", "部门2", "部门3"],
+      importanceOptions: [1, 2, 3],
       calendarTypeOptions,
       sortOptions: [
         { label: "ID Ascending", key: "+id" },
@@ -240,8 +207,8 @@ export default {
       dialogFormVisible: false,
       dialogStatus: "",
       textMap: {
-        update: "Edit",
-        create: "Create",
+        update: "修改",
+        create: "新建",
       },
       dialogPvVisible: false,
       pvData: [],
@@ -268,6 +235,9 @@ export default {
     this.getList();
   },
   methods: {
+    close(){
+      this.imagecropperShow = false
+    },
     getList() {
       this.listLoading = true;
       fetchList(this.listQuery).then((response) => {

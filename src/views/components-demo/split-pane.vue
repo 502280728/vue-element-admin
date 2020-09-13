@@ -9,7 +9,18 @@
       <template slot="paneL">
         <split-pane split="horizontal">
           <template slot="paneL">
+            <el-form :style="{width:'100%'}">
+              <el-form-item label="证书类型">
+                <el-select placeholder="选择证书" v-model="zhengshutype">
+                  <el-option value="shanghai1" label="证书1"></el-option>
+                  <el-option value="shanghai2" label="证书2"></el-option>
+                  <el-option value="shanghai3" label="证书3"></el-option>
+                  <el-option value="shanghai4" label="证书4"></el-option>
+                </el-select>
+              </el-form-item>
+            </el-form>
             <div class="top-container">
+              <h3>签章</h3>
               <div :style="{height:'100%',overflow:'auto'}">
                 <span
                   v-for="(image,index) in images"
@@ -32,6 +43,7 @@
           </template>
           <template slot="paneR">
             <div class="bottom-container">
+              <h3>电子签名</h3>
               <div :style="{height:'100%',overflow:'auto'}">
                 <span
                   v-for="(image,index) in images2"
@@ -46,13 +58,18 @@
         </split-pane>
       </template>
       <template slot="paneR">
-        <div :style="{position:'relative',height:'100%',width:'100%'}">
-          <div :style="{overflow:'auto',position:'absolute',top:'50%',right:'10%'}">
-              <pan-thumb :image="choosed_image" />
-          </div>
-          <div>
-            <pdf src="abc.pdf" />
-          </div>
+        <vue-draggable-resizable
+          :w="150"
+          :h="150"
+          :resizable="false"
+          :parent="true"
+          :x="200"
+          :y="200"
+        >
+          <pan-thumb :image="choosed_image" />
+        </vue-draggable-resizable>
+        <div class="abc-info" :style="{zIndex:'-100'}">
+          <pdf src="abc.pdf" :style="{zIndex:'-100'}" />
         </div>
       </template>
     </split-pane>
@@ -65,17 +82,33 @@ import PanThumb from "@/components/PanThumb";
 import Dropzone from "@/components/Dropzone";
 import draggable from "vuedraggable";
 import pdf from "vue-pdf";
+import VueDraggableResizable from "vue-draggable-resizable";
+
+// optionally import default styles
+import "vue-draggable-resizable/dist/VueDraggableResizable.css";
 export default {
   name: "SplitpaneDemo",
-  components: { splitPane, PanThumb, pdf, Dropzone, draggable },
+  components: {
+    splitPane,
+    PanThumb,
+    pdf,
+    Dropzone,
+    draggable,
+    VueDraggableResizable,
+  },
   data() {
     return {
       images: [
         "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3711535626,1297779669&fm=26&gp=0.jpg",
-        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1599902255684&di=8b92b245b593974ebd710c4adfc6b0d9&imgtype=0&src=http%3A%2F%2Fa3.att.hudong.com%2F64%2F52%2F01300000407527124482522224765.jpg",
-        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1599902338204&di=7c6c390190e1c43dba1a0d21ae16bf17&imgtype=0&src=http%3A%2F%2Fa3.att.hudong.com%2F65%2F38%2F16300534049378135355388981738.jpg",
+        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1599971764293&di=341139d8c7e2c0d520326d06127b9edd&imgtype=0&src=http%3A%2F%2Fwww.0451outs.com%2FUploadFiles%2F2019-4%2F149%2F6369213206636305806083897.jpg",
+        "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3801084477,3495596200&fm=26&gp=0.jpg",
       ],
-      choosed_image:""
+      images2:[
+"https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1599961596&di=dc9504f4113e95ef51783323a1c4b529&src=http://img13.360buyimg.com/popWaterMark/jfs/t757/128/205006117/112285/54c50f68/5493d8cdN5dd07cc4.jpg",
+"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2071618763,2733850504&fm=26&gp=0.jpg"
+      ],
+      choosed_image: "",
+      zhengshutype: "",
     };
   },
   methods: {
@@ -93,9 +126,9 @@ export default {
       console.log(a.oldIndex);
       this.images2 = [this.images1[a.oldIndex]];
     },
-    clickItem(image){
-      this.choosed_image = image
-    }
+    clickItem(image) {
+      this.choosed_image = image;
+    },
   },
 };
 </script>
@@ -132,5 +165,11 @@ export default {
 }
 .ghost {
   display: none !important;
+}
+#myVueDropzone{
+  border-radius: 50%;
+  height: 150px !important;
+  width: 150px !important;
+  padding: 0px !important;
 }
 </style>

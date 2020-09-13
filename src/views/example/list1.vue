@@ -55,27 +55,27 @@
           <span>{{ row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="登录账号" min-width="150px">
+      <el-table-column label="登录账号">
         <template slot-scope="{row}">
           <span class="link-type">{{ row.a1 }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="姓名" width="110px" align="center">
+      <el-table-column label="姓名" align="center">
         <template slot-scope="{row}">
           <span>{{ row.a2 }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="部门" width="110px" align="center">
+      <el-table-column label="部门" align="center">
         <template slot-scope="{row}">
           <span>{{ row.a3 }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="手机" width="110px" align="center">
+      <el-table-column label="手机" align="center">
         <template slot-scope="{row}">
           <span>{{ row.a4 }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="邮箱" width="110px" align="center">
+      <el-table-column label="邮箱">
         <template slot-scope="{row}">
           <span>{{ row.a5 }}</span>
         </template>

@@ -27,7 +27,7 @@ export default {
     },
     defaultMsg: {
       type: String,
-      default: '上传图片'
+      default: '点击上传签章'
     },
     acceptedFiles: {
       type: String,
@@ -100,7 +100,7 @@ export default {
       addRemoveLinks: this.showRemoveLink,
       acceptedFiles: this.acceptedFiles,
       autoProcessQueue: this.autoProcessQueue,
-      dictDefaultMessage: '<i >+</i><br/><i style="margin-top: 3em;display: inline-block" class="material-icons">' + this.defaultMsg + '</i>',
+      dictDefaultMessage: '<i style="margin-top: 2em;display: inline-block" class="material-icons">' + this.defaultMsg + '</i>',
       dictMaxFilesExceeded: '只能一个图',
       previewTemplate: '<div class="dz-preview dz-file-preview">  <div class="dz-image" style="width:' + this.thumbnailWidth + 'px;height:' + this.thumbnailHeight + 'px" ><img style="width:' + this.thumbnailWidth + 'px;height:' + this.thumbnailHeight + 'px" data-dz-thumbnail /></div>  <div class="dz-details"><div class="dz-size"><span data-dz-size></span></div> <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>  <div class="dz-error-message"><span data-dz-errormessage></span></div>  <div class="dz-success-mark"> <i class="material-icons">done</i> </div>  <div class="dz-error-mark"><i class="material-icons">error</i></div></div>',
       init() {

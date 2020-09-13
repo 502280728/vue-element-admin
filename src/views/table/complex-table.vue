@@ -27,15 +27,15 @@
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
         搜索
       </el-button>
-      <el-button class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-edit" @click="handleCreate">
-        快速签章
-      </el-button>
+      
       <el-button v-waves :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" @click="handleDownload">
         导出
       </el-button>
-      <!-- <el-checkbox v-model="showReviewer" class="filter-item" style="margin-left:15px;" @change="tableKey=tableKey+1">
-        reviewer
-      </el-checkbox> -->
+      <el-button class="filter-item" style="margin-left: 10px;" type="success" icon="el-icon-edit" >
+        <router-link to="/qianzhangguanli/qianzhang">
+        快速签章
+        </router-link>
+      </el-button>
     </div>
 
     <el-table
@@ -58,50 +58,18 @@
           <span>{{ row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="文件名称" min-width="150px">
+      <el-table-column label="文件名称" >
         <template slot-scope="{row}">
           <span class="link-type" >{{ row.reviewer }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="文件大小" width="110px" align="center">
+      <el-table-column label="文件大小">
         <template slot-scope="{row}">
           <span>{{ row.author }}</span>
         </template>
       </el-table-column>
-      <!-- <el-table-column v-if="showReviewer" label="Reviewer" width="110px" align="center">
-        <template slot-scope="{row}">
-          <span style="color:red;">{{ row.reviewer }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="Imp" width="80px">
-        <template slot-scope="{row}">
-          <svg-icon v-for="n in + row.importance" :key="n" icon-class="star" class="meta-item__icon" />
-        </template>
-      </el-table-column>
-      <el-table-column label="Readings" align="center" width="95">
-        <template slot-scope="{row}">
-          <span v-if="row.pageviews" class="link-type" @click="handleFetchPv(row.pageviews)">{{ row.pageviews }}</span>
-          <span v-else>0</span>
-        </template>
-      </el-table-column> -->
-      <!-- <el-table-column label="Status" class-name="status-col" width="100">
-        <template slot-scope="{row}">
-          <el-tag :type="row.status | statusFilter">
-            {{ row.status }}
-          </el-tag>
-        </template>
-      </el-table-column> -->
       <el-table-column label="查看" align="center" width="230" class-name="small-padding fixed-width">
         <template slot-scope="{row,$index}">
-          <!-- <el-button type="primary" size="mini" @click="handleUpdate(row)">
-            Edit
-          </el-button>
-          <el-button v-if="row.status!='published'" size="mini" type="success" @click="handleModifyStatus(row,'published')">
-            Publish
-          </el-button>
-          <el-button v-if="row.status!='draft'" size="mini" @click="handleModifyStatus(row,'draft')">
-            Draft
-          </el-button> -->
           <el-button v-if="row.status!='deleted'" size="mini" type="primary" @click="handleDelete(row,$index)">
             查看
           </el-button>

@@ -26,12 +26,13 @@ for (let i = 0; i < count; i++) {
     platforms: ['a-platform'],
     a1:"@first",
     a2:"@name",
-    a3:"@first",
+    "a3|1":['部门1','部门2','部门3','部门4'],
     a4:"@last",
-    a5:"@first",
+    a5:"@email",
     li:"20200910@integer(100000000,300000000)",
-    money:"@integer(2000,3000) ¥",
-    "chargetype|1":["支付宝","微信"]
+    "money|1":['500 ¥','1000 ¥','1500 ¥','2000 ¥'],
+    "chargetype|1":["支付宝","微信"],
+    "statusss|1":['成功','失败']
   }))  
 }
 

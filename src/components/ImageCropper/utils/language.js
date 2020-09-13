@@ -1,6 +1,6 @@
 export default {
   zh: {
-    hint: '点击，或拖动图片至此处',
+    hint: '点击，或拖动PDF至此处',
     loading: '正在上传……',
     noSupported: '浏览器不支持该功能，请使用IE10以上或其他现在浏览器！',
     success: '上传成功',
@@ -13,7 +13,7 @@ export default {
       save: '保存'
     },
     error: {
-      onlyImg: '仅限图片格式',
+      onlyImg: '仅限PDF格式',
       outOfSize: '单文件大小不能超过 ',
       lowestPx: '图片最低像素为（宽*高）：'
     }

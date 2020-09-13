@@ -7,7 +7,8 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            快速签章
+            <router-link to="/qianzhangguanli/qianzhang">快速签章</router-link>
+             
           </div>
         </div>
       </div>
@@ -19,7 +20,9 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
+            <router-link to="/permission/charge">
             充值入口
+            </router-link>
           </div>
         </div>
       </div>
